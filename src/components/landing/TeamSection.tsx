@@ -10,7 +10,7 @@ const TeamSection = () => {
     {
       name: "Nayvi Pablo",
       role: "Expositora invitada",
-      achievement: "Becaria SABF (Argentina) y ALAP (México)",
+      achievement: "Becaria Ireland Fellows Programme Latin America",
     },
     {
       name: "Giovanna Roque",
