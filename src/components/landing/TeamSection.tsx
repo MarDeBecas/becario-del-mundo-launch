@@ -8,7 +8,7 @@ const TeamSection = () => {
 
   const speakers = [
     {
-      name: "Okaren Cabrera",
+      name: "Nayvi Pablo",
       role: "Expositora invitada",
       achievement: "Becaria SABF (Argentina) y ALAP (México)",
     },
