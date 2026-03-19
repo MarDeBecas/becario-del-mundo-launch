@@ -19,7 +19,7 @@ const ModulesSection = () => {
         "Visión académica y profesional",
       ],
       image: "/images/lechuza-sonriendo.png",
-      bg: "#EEF2FF",
+      bg: "#ffffff",
       accent: "#2059BA",
     },
     {
@@ -34,7 +34,7 @@ const ModulesSection = () => {
         "Calendario de convocatorias",
       ],
       image: "/images/lechuza-rompecabezas.png",
-      bg: "#F3EEFF",
+      bg: "#ffffff",
       accent: "#A07DE2",
     },
     {
@@ -49,8 +49,8 @@ const ModulesSection = () => {
         "Cronograma de aplicación",
       ],
       image: "/images/lechuza-volando.png",
-      bg: "#FFF8EE",
-      accent: "#FFC45F",
+      bg: "#ffffff",
+      accent: "#c4607a",
     },
     {
       week: "04",
@@ -64,7 +64,7 @@ const ModulesSection = () => {
         "Marca personal global",
       ],
       image: "/images/lechuza-laptop-graduado.png",
-      bg: "#e9dbde",
+      bg: "#ffffff",
       accent: "#c4607a",
     },
     {
@@ -79,7 +79,7 @@ const ModulesSection = () => {
         "Redacción guiada en vivo",
       ],
       image: "/images/lechuza-corazon.png",
-      bg: "#EEF2FF",
+      bg: "#ffffff",
       accent: "#2059BA",
     },
     {
@@ -94,7 +94,7 @@ const ModulesSection = () => {
         "Comunicación ante comités",
       ],
       image: "/images/lechuza-laptop-graduado.png",
-      bg: "#F3EEFF",
+      bg: "#ffffff",
       accent: "#A07DE2",
     },
   ];
@@ -103,18 +103,13 @@ const ModulesSection = () => {
     <section
       ref={ref}
       id="modulos"
-      className="py-28 scroll-mt-20 relative overflow-hidden"
-      style={{
-        backgroundColor: "#2d1b69",
-      }}
+      className="py-28 scroll-mt-20 relative overflow-hidden bg-gradient-to-br from-primary via-purple-dark to-foreground"
     >
 
       {/* Círculos decorativos */}
       <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#A07DE2] opacity-10 blur-3xl" />
       <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-[#2059BA] opacity-10 blur-3xl" />
 
-      {/* Línea superior */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#FFC45F] via-[#A07DE2] to-[#2059BA]" />
 
       <div className="mx-auto px-6 relative z-10" style={{ maxWidth: "1380px" }}>
 
@@ -283,9 +278,6 @@ const ModulesSection = () => {
         </div>
 
       </div>
-
-      {/* Línea inferior */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#2059BA] via-[#A07DE2] to-[#FFC45F]" />
     </section>
   );
 };

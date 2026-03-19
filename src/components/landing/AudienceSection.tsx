@@ -89,7 +89,7 @@ const AudienceSection = () => {
       ref={ref}
       className="py-28 scroll-mt-20 relative overflow-hidden"
       style={{
-        backgroundColor: "#f0ecff",
+        backgroundColor: "#f2f0f5",
         backgroundImage: `
           radial-gradient(circle at 10% 20%, rgba(160,125,226,0.2) 0%, transparent 40%),
           radial-gradient(circle at 90% 80%, rgba(32,89,186,0.15) 0%, transparent 40%)
@@ -100,13 +100,11 @@ const AudienceSection = () => {
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: `radial-gradient(circle, #A07DE2 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle, #69578a 1px, transparent 1px)`,
           backgroundSize: "28px 28px",
         }}
       />
 
-      {/* Línea superior */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2059BA] via-[#A07DE2] to-[#FFC45F]" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
 
@@ -286,9 +284,6 @@ const AudienceSection = () => {
         </div>
 
       </div>
-
-      {/* Línea inferior */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#FFC45F] via-[#A07DE2] to-[#2059BA]" />
     </section>
   );
 };

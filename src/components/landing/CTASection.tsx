@@ -1,74 +1,97 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MessageCircle, Mail, Instagram, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="section-padding bg-secondary">
-      <div className="section-container">
+    <section
+      ref={ref}
+      id="inscribete"
+      className="py-20 bg-white scroll-mt-20 relative overflow-hidden"
+    >
+      <div className="max-w-5xl mx-auto px-6">
+
+        {/* Card principal */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="max-w-2xl mx-auto text-center"
+          transition={{ duration: 0.7 }}
+          className="relative rounded-3xl overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, #2059BA 0%, #A07DE2 60%, #FFC45F 100%)",
+            minHeight: "320px",
+          }}
         >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Da el siguiente paso hacia tu beca internacional
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Estamos aquí para acompañarte en tu camino hacia una educación de clase mundial.
-          </p>
+          {/* Círculos decorativos de fondo */}
+          <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white opacity-5 translate-x-1/4 -translate-y-1/4" />
+          <div className="absolute bottom-0 right-20 w-48 h-48 rounded-full bg-white opacity-5 translate-y-1/4" />
+          <div className="absolute top-1/2 right-32 w-32 h-32 rounded-full bg-white opacity-5 -translate-y-1/2" />
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <Button
-              size="lg"
-              className="bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold px-8 py-6 text-lg gap-2"
-              asChild
-            >
-              <a href="https://wa.me/51999999999" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="w-5 h-5" />
-                Escríbenos por WhatsApp
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-8 py-6 text-lg gap-2"
-              asChild
-            >
-              <a href="mailto:contacto@mardebecas.com">
-                <Mail className="w-5 h-5" />
-                Contáctanos por correo
-              </a>
-            </Button>
-          </div>
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-10 lg:p-14">
 
-          <div className="border-t border-border pt-8">
-            <p className="text-sm text-muted-foreground mb-4">Síguenos en redes sociales</p>
-            <div className="flex justify-center gap-4">
-              <a
-                href="https://instagram.com/mardebecas"
+            {/* Texto + botón izquierda */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="flex-1"
+            >
+              {/* Badge */}
+              <span className="inline-block bg-white/15 text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-white/20 tracking-widest uppercase">
+                 Nueva edición disponible
+              </span>
+
+              <h2 className="font-sans text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+                ¿Listo para conseguir
+                <br />
+                <span className="text-[#FFC45F]">
+                  tu beca internacional?
+                </span>
+              </h2>
+
+              <p className="text-white/80 text-base leading-relaxed mb-8 max-w-md">
+                Únete a Becario del Mundo y transforma tu perfil en 6 sesiones intensivas con mentora experta y ex-becarios ganadores.
+              </p>
+
+              {/* Botón CTA */}
+              <motion.a
+                href="https://forms.gle/7HnCBj5sxFTy3Rbt6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 bg-white text-[#2059BA] font-black text-base px-8 py-4 rounded-full shadow-xl hover:shadow-white/20 transition-all duration-300"
               >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://linkedin.com/company/mardebecas"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
+                👉 QUIERO SER BECARIO DEL MUNDO
+              </motion.a>
+
+              <p className="text-white/50 text-sm mt-4">
+                 Sin compromisos · Cupos limitados
+              </p>
+            </motion.div>
+
+            {/* Lechuza derecha */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, rotate: 15 }}
+              animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+              transition={{ duration: 0.8, ease: [0.175, 0.885, 0.32, 1.275], delay: 0.3 }}
+              className="flex-shrink-0 relative hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-white opacity-10 blur-3xl rounded-full scale-75" />
+              <motion.img
+                src="/images/lechuza-corazon.png"
+                alt="Mascota Mar de Becas"
+                className="w-64 h-64 object-contain relative z-10 drop-shadow-2xl"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
+
           </div>
         </motion.div>
+
       </div>
     </section>
   );
