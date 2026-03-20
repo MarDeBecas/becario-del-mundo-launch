@@ -193,7 +193,7 @@ const ModulesSection = () => {
                         {module.title}
                       </h3>
                       {/* Descripción completa sin truncar */}
-                      <p className="text-gray-500 text-xs leading-relaxed">
+                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
                         {module.description}
                       </p>
                     </div>
