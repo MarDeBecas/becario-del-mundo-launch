@@ -105,13 +105,12 @@ const AudienceSection = () => {
         }}
       />
 
-
       <div className="max-w-6xl mx-auto px-6 relative z-10">
 
         {/* Layout principal */}
-        <div className="flex flex-col lg:flex-row items-start gap-12 mb-20">
+        <div className="flex flex-col lg:flex-row items-start gap-12 mb-12">
 
-          {/* Texto + Stats */}
+          {/* Texto izquierda */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -125,134 +124,90 @@ const AudienceSection = () => {
               transition={{ duration: 0.5 }}
               className="inline-block bg-white text-[#2059BA] text-sm font-semibold px-5 py-2 rounded-full mb-6 shadow-sm border border-[#A07DE2]/30 tracking-widest uppercase"
             >
-              ✦ ¿Es para ti?
+              ¿Es para ti?
             </motion.span>
 
-            {/* Título todo negro */}
+            {/* Título */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-sans text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-6"
-              >
-                ¿A quién va dirigido?
+            >
+              ¿A quién va dirigido?
             </motion.h2>
 
-            {/* Frase fluida sin guión */}
+            {/* Frase */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-gray-600 text-lg leading-relaxed max-w-lg mb-2"
+              className="text-gray-600 text-lg leading-relaxed max-w-lg mb-8"
             >
               Si soñaste con estudiar fuera de tu país y no sabes por dónde empezar,{" "}
               <span className="text-[#A07DE2] font-bold">
-                este programa es para ti. 
+                este programa es para ti.
               </span>
             </motion.p>
 
-            {/* Quote */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-gray-400 text-sm italic mb-10"
-            >
-              "Antes de este programa, no tenía ni idea de cómo aplicar a una beca internacional. Ahora me siento preparado y confiado para lograrlo." - Ana G., Becaria del Mundo 2023
-            </motion.p>
-
-            {/* Conector visual */}
+            {/* Testimonio destacado — más grande y visible */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex items-center gap-4 mb-8"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-white rounded-2xl p-6 mb-0 border-l-4 border-[#A07DE2] shadow-md"
             >
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#A07DE2] to-transparent" />
-              <span className="text-sm font-semibold text-[#A07DE2] uppercase tracking-widest px-4">
-                ✦ Este programa incluye ✦
-              </span>
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#A07DE2] to-transparent" />
+              <div className="flex gap-3 mb-4">
+                <span className="text-4xl text-[#A07DE2] font-black leading-none">"</span>
+                <p className="text-gray-700 text-base leading-relaxed font-medium">
+                  Antes de este programa, no tenía ni idea de cómo aplicar a una beca internacional. Ahora me siento preparada y confiada para lograrlo.
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#2059BA] to-[#A07DE2] flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-sm font-black">A</span>
+                </div>
+                <div>
+                  <p className="text-gray-900 text-sm font-bold">Ana G.</p>
+                  <p className="text-[#A07DE2] text-xs font-semibold">Becaria del Mundo 2024</p>
+                </div>
+                <div className="ml-auto flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-[#FFC45F]">★</span>
+                  ))}
+                </div>
+              </div>
             </motion.div>
-
-            {/* Cards audiencia */}
-            <div className="grid md:grid-cols-3 gap-6">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 + i * 0.15, ease: "easeOut" }}
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                  className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300"
-                >
-                  {/* Número animado */}
-                  <p className="text-4xl font-black mb-1" style={{ color: stat.color }}>
-                    <AnimatedNumber
-                      value={stat.value}
-                      prefix={stat.prefix}
-                      suffix={stat.suffix}
-                      isInView={isInView}
-                    />
-                  </p>
-
-                  <p className="text-gray-800 text-xs font-bold leading-tight mb-1">
-                    {stat.label}
-                  </p>
-                  <p className="text-gray-400 text-xs mb-3">
-                    {stat.sublabel}
-                  </p>
-
-                  {/* Barra de progreso */}
-                  <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${stat.progress}%` } : {}}
-                      transition={{ duration: 2, delay: 0.6 + i * 0.15, ease: "easeOut" }}
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: stat.color }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
-          {/* Lechuza con animaciones */}
+          {/* Lechuza */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5, y: 50 }}
             animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
             transition={{
               duration: 0.8,
-              ease: [0.175, 0.885, 0.32, 1.275], // rebote
+              ease: [0.175, 0.885, 0.32, 1.275],
               delay: 0.3,
             }}
             className="flex-shrink-0 relative lg:sticky lg:top-10"
           >
-            {/* Halo pulsante */}
             <motion.div
               className="absolute inset-0 bg-[#A07DE2] opacity-20 blur-3xl rounded-full"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
-
-            {/* Lechuza flotante + hover giro */}
             <motion.img
               src="/images/lechuza-rompecabezas.png"
               alt="Mascota Mar de Becas"
               className="w-72 h-72 object-contain relative z-10 drop-shadow-2xl cursor-pointer"
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              whileHover={{
-                rotate: [0, -8, 8, -8, 0],
-                transition: { duration: 0.5 },
-              }}
             />
           </motion.div>
         </div>
 
-        {/* Cards audiencia */}
-        <div className="grid md:grid-cols-3 gap-6">
+        {/* Cards audiencia — PRIMERO, responden "¿a quién?" */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
           {audiences.map((audience, index) => (
             <motion.div
               key={index}
@@ -262,27 +217,20 @@ const AudienceSection = () => {
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
               className="relative group bg-white rounded-3xl p-8 overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
             >
-              {/* Gradiente hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${audience.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-3xl`} />
-
-              {/* Icono con hover scale */}
               <div className={`w-16 h-16 rounded-2xl ${audience.bg} flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300`}>
                 <audience.icon className="w-8 h-8 text-white" />
               </div>
-
               <h3 className="font-sans text-xl font-bold text-gray-900 mb-3">
                 {audience.title}
               </h3>
               <p className="text-gray-500 leading-relaxed text-sm">
                 {audience.description}
               </p>
-
-              {/* Línea inferior animada */}
               <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${audience.gradient} w-0 group-hover:w-full transition-all duration-500 rounded-b-3xl`} />
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
