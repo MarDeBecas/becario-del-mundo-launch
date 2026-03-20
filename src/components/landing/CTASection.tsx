@@ -50,7 +50,7 @@ const CTASection = () => {
                   textShadow: "0 1px 3px rgba(0,0,0,0.4)",
                 }}
               >
-                🚀 Nueva edición disponible
+                 Nueva edición disponible
               </span>
 
               {/* Título con sombra de texto */}
@@ -93,7 +93,7 @@ const CTASection = () => {
                 className="text-white text-sm mt-4 font-semibold"
                 style={{ textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}
               >
-                🔒 Sin compromisos · Cupos limitados
+                 Sin compromisos · Cupos limitados
               </p>
             </motion.div>
 
