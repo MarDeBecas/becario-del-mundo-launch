@@ -25,7 +25,7 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="section-padding bg-purple-light">
+    <section ref={ref} id="beneficios" className="scroll-mt-20 section-padding bg-purple-light">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div

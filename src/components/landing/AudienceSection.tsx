@@ -87,6 +87,7 @@ const AudienceSection = () => {
   return (
     <section
       ref={ref}
+      id="audiencia"
       className="py-28 scroll-mt-20 relative overflow-hidden"
       style={{
         backgroundColor: "#f2f0f5",

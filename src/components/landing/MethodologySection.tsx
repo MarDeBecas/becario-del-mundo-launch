@@ -35,7 +35,7 @@ const MethodologySection = () => {
   ];
 
   return (
-    <section ref={ref} className="section-padding bg-foreground">
+    <section ref={ref} id="metodologia" className="scroll-mt-20 section-padding bg-foreground">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

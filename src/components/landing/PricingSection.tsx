@@ -17,7 +17,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section ref={ref} className="section-padding bg-gradient-to-br from-primary via-purple-dark to-foreground">
+    <section ref={ref} id="precio" className="scroll-mt-20 section-padding bg-gradient-to-br from-primary via-purple-dark to-foreground">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
