@@ -161,7 +161,7 @@ const AudienceSection = () => {
               <div className="flex gap-3 mb-4">
                 <span className="text-4xl text-[#A07DE2] font-black leading-none">"</span>
                 <p className="text-gray-700 text-base leading-relaxed font-medium">
-                  Antes de este programa, no tenía ni idea de cómo aplicar a una beca internacional. Ahora me siento preparada y confiada para lograrlo.
+                  Este programa me ayudó a entender más sobre la postulación, proceso en las becas, tener más claridad sobre mi proyecto personal y autoconocerme.
                 </p>
               </div>
               <div className="flex items-center gap-3">
@@ -169,8 +169,8 @@ const AudienceSection = () => {
                   <span className="text-white text-sm font-black">A</span>
                 </div>
                 <div>
-                  <p className="text-gray-900 text-sm font-bold">Ana G.</p>
-                  <p className="text-[#A07DE2] text-xs font-semibold">Becaria del Mundo 2024</p>
+                  <p className="text-gray-900 text-sm font-bold">Meli R.</p>
+                  <p className="text-[#A07DE2] text-xs font-semibold">Becaria del Mundo 2025</p>
                 </div>
                 <div className="ml-auto flex gap-0.5">
                   {[...Array(5)].map((_, i) => (

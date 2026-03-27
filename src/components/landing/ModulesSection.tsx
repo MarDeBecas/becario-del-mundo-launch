@@ -18,8 +18,8 @@ const ModulesSection = () => {
         "Mapeo de sueños y metas",
         "Visión académica y profesional",
       ],
-      image: "/images/lechuza-sonriendo.png",
-      accent: "#2059BA",
+      image: "/images/liderazgo.png",
+      accent: "#2059BA", 
     },
     {
       week: "02",
@@ -32,7 +32,7 @@ const ModulesSection = () => {
         "Requisitos por programa",
         "Calendario de convocatorias",
       ],
-      image: "/images/lechuza-rompecabezas.png",
+      image: "/images/global.png",
       accent: "#A07DE2",
     },
     {
@@ -46,7 +46,7 @@ const ModulesSection = () => {
         "Estrategia personalizada",
         "Cronograma de aplicación",
       ],
-      image: "/images/lechuza-volando.png",
+      image: "/images/seleccion.png",
       accent: "#2059BA",
     },
     {
@@ -60,7 +60,7 @@ const ModulesSection = () => {
         "Panel con ex-becarios",
         "Marca personal global",
       ],
-      image: "/images/lechuza-laptop-graduado.png",
+      image: "/images/cv.png",
       accent: "#A07DE2",
     },
     {
@@ -74,7 +74,7 @@ const ModulesSection = () => {
         "Casos exitosos reales",
         "Redacción guiada en vivo",
       ],
-      image: "/images/lechuza-corazon.png",
+      image: "/images/letter.png",
       accent: "#2059BA",
     },
     {
@@ -88,7 +88,7 @@ const ModulesSection = () => {
         "Feedback inmediato",
         "Comunicación ante comités",
       ],
-      image: "/images/lechuza-laptop-graduado.png",
+      image: "/images/Interview.png",
       accent: "#A07DE2",
     },
   ];
@@ -97,45 +97,63 @@ const ModulesSection = () => {
     <section
       ref={ref}
       id="modulos"
-      className="py-28 scroll-mt-20 relative overflow-hidden bg-gradient-to-br from-primary via-purple-dark to-foreground"
+      className="relative scroll-mt-20 overflow-hidden py-28 bg-gradient-to-br from-brand-blue via-[#3d2b7a] to-[#1a0b3d]"
     >
-      {/* Círculos decorativos */}
-      <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#A07DE2] opacity-10 blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-[#2059BA] opacity-10 blur-3xl" />
+      {/* 1. Ruido de fondo (IDÉNTICO a Metodología) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-      <div className="mx-auto px-6 relative z-10" style={{ maxWidth: "1380px" }}>
+      {/* 2. Orbes decorativos (Mismos colores de marca que Metodología) */}
+      <motion.div
+        className="pointer-events-none absolute -left-32 top-16 h-80 w-80 rounded-full bg-brand-purple/20 blur-[100px]"
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="pointer-events-none absolute -right-24 bottom-10 h-96 w-96 rounded-full bg-brand-blue/30 blur-[100px]"
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+
+      <div className="relative z-10 mx-auto px-6" style={{ maxWidth: "1380px" }}>
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-10"
+          className="text-center mb-16"
         >
-          <span className="inline-block bg-white/10 text-white text-sm font-semibold px-5 py-2 rounded-full mb-4 border border-white/20 tracking-widest uppercase">
+          <span className="inline-block mb-4 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white/90 backdrop-blur-sm">
              Ruta de Formación
           </span>
-          <h2 className="font-sans text-5xl md:text-6xl font-black text-white leading-tight mb-4">
+          <h2 className="font-display text-5xl md:text-6xl font-black text-white leading-tight mb-5">
             6 Sesiones para tu Éxito
           </h2>
-          <p className="text-white/60 text-lg">
-            Metodología 100% práctica · 1 sesión/semana · Sábados 9:00 AM (hora Perú)
+          <p className="text-brand-pink/80 text-lg max-w-2xl mx-auto leading-relaxed font-sans">
+            Metodología 100% práctica <span className="text-brand-gold mx-1">•</span> 1 sesión/semana <span className="text-brand-gold mx-1">•</span> Sábados 9:00 AM (hora Perú)
           </p>
+
+          <motion.div
+            className="mx-auto mt-8 h-1 rounded-full bg-gradient-to-r from-brand-blue via-brand-purple to-brand-gold"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 120 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
         </motion.div>
 
-        {/* Cards grid 3x2 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Cards Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {modules.map((module, index) => {
             const isFlipped = flipped === index;
 
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
-                className="relative cursor-pointer group/card"
-                style={{ perspective: "1200px", height: "320px" }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                className="relative cursor-pointer group/card h-[320px]"
+                style={{ perspective: "1500px" }}
                 onClick={() => setFlipped(isFlipped ? null : index)}
               >
                 <motion.div
@@ -147,7 +165,7 @@ const ModulesSection = () => {
 
                   {/* ══ FRENTE ══ */}
                   <div
-                    className="absolute inset-0 rounded-2xl overflow-hidden flex flex-row items-center hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 bg-white"
+                    className="absolute inset-0 rounded-2xl overflow-hidden flex flex-row items-center bg-white shadow-xl group-hover/card:shadow-brand-gold/10 transition-all duration-300"
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     {/* Ilustración izquierda */}
@@ -155,14 +173,12 @@ const ModulesSection = () => {
                       className="w-32 h-full flex items-center justify-center flex-shrink-0 relative overflow-hidden"
                       style={{ backgroundColor: `${module.accent}15` }}
                     >
-                      {/* Número de fondo más visible */}
                       <span
-                        className="absolute text-7xl font-black opacity-10 select-none"
-                        style={{ color: module.accent }}
+                        className="absolute text-8xl font-black opacity-10 select-none"
+                        style={{ color: module.accent, bottom: '-10px', right: '-10px' }}
                       >
                         {module.week}
                       </span>
-                      {/* Lechuza */}
                       <img
                         src={module.image}
                         alt={`Sesión ${module.week}`}
@@ -170,40 +186,33 @@ const ModulesSection = () => {
                       />
                     </div>
 
-                    {/* Contenido derecha — más padding */}
-                    <div className="flex-1 px-5 py-5 pr-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span
-                          className="text-xs font-black uppercase tracking-widest"
-                          style={{ color: "#1a1a2e" }}
-                        >
+                    {/* Contenido derecha */}
+                    <div className="flex-1 px-6 py-5 pr-4 flex flex-col h-full justify-center">
+                      <div className="flex items-center gap-2 mb-2.5">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-brand-blue">
                           Sesión {module.week}
                         </span>
                         <span
-                          className="text-xs px-2 py-0.5 rounded-full font-bold"
+                          className="text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider"
                           style={{
-                            backgroundColor: `${module.accent}25`,
+                            backgroundColor: `${module.accent}20`,
                             color: "#1a1a2e",
                           }}
                         >
                           {module.tag}
                         </span>
                       </div>
-                      <h3 className="font-sans text-base font-black text-gray-900 leading-tight mb-2">
+                      <h3 className="font-display text-base font-extrabold text-gray-900 leading-snug mb-2.5">
                         {module.title}
                       </h3>
-                      {/* Descripción completa sin truncar */}
-                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
+                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 font-sans">
                         {module.description}
                       </p>
                     </div>
 
-                    {/* Botón circular — mismo color siempre */}
+                    {/* Botón circular */}
                     <div className="pr-4 flex-shrink-0">
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center shadow-md group-hover/card:translate-x-1 transition-transform duration-300"
-                        style={{ backgroundColor: "#2059BA" }}
-                      >
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-brand-blue shadow-md group-hover/card:scale-110 transition-transform">
                         <span className="text-white font-black text-sm">→</span>
                       </div>
                     </div>
@@ -211,35 +220,27 @@ const ModulesSection = () => {
 
                   {/* ══ REVERSO ══ */}
                   <div
-                    className="absolute inset-0 rounded-2xl overflow-hidden flex flex-row items-center"
+                    className="absolute inset-0 rounded-2xl overflow-hidden flex flex-row items-center p-7"
                     style={{
                       backfaceVisibility: "hidden",
                       transform: "rotateX(180deg)",
                       backgroundColor: module.accent,
                     }}
                   >
-                    {/* Número izquierda */}
-                    <div className="w-32 h-full flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-                      <span className="text-6xl font-black text-white/20 select-none">
-                        {module.week}
-                      </span>
-                    </div>
-
-                    {/* Lista derecha */}
-                    <div className="flex-1 px-6 py-4">
-                      <p className="text-white/70 text-xs uppercase tracking-widest font-bold mb-3">
-                        Lo que aprenderás ✦
+                    <div className="flex-1">
+                      <p className="text-white/70 text-[10px] uppercase tracking-widest font-bold mb-4">
+                        Objetivos de Aprendizaje ✦
                       </p>
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                      <div className="grid grid-cols-1 gap-y-3">
                         {module.learnings.map((item, i) => (
                           <motion.div
                             key={i}
-                            initial={{ opacity: 0 }}
-                            animate={isFlipped ? { opacity: 1 } : {}}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={isFlipped ? { opacity: 1, x: 0 } : {}}
                             transition={{ delay: 0.3 + i * 0.08 }}
-                            className="flex items-center gap-1.5 text-white text-xs"
+                            className="flex items-center gap-3 text-white text-xs font-sans"
                           >
-                            <span className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-white text-xs flex-shrink-0">
+                            <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px] flex-shrink-0">
                               ✓
                             </span>
                             {item}
@@ -248,10 +249,9 @@ const ModulesSection = () => {
                       </div>
                     </div>
 
-                    {/* Botón cerrar */}
-                    <div className="pr-4 flex-shrink-0">
-                      <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
-                        <span className="text-white font-black text-sm">✕</span>
+                    <div className="ml-4 flex-shrink-0 self-start">
+                      <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition-colors">
+                        <span className="text-white font-black text-xs">✕</span>
                       </div>
                     </div>
                   </div>
@@ -261,7 +261,6 @@ const ModulesSection = () => {
             );
           })}
         </div>
-
       </div>
     </section>
   );
