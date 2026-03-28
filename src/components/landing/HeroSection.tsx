@@ -37,10 +37,10 @@ const tabletNav = navItems.filter(({ href }) =>
 );
 
 const pills = [
-  { icon: Calendar,     text: "5 semanas"                      },
+  { icon: Calendar,     text: "6 semanas"                      },
   { icon: Monitor,      text: "Virtual en vivo"                 },
   { icon: Clock,        text: "Sábados 9:00 – 10:30 AM (Perú)" },
-  { icon: CalendarDays, text: "Inicio: 22 de noviembre"         },
+  { icon: CalendarDays, text: "Inicio: 14 de Junio"             },
 ];
 
 const fadeUp = {
@@ -168,7 +168,7 @@ const HeroSection = () => {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
-              Inscribirme
+              Pre-inscripción
             </motion.a>
 
             {/* Hamburguesa — mobile */}
@@ -211,7 +211,7 @@ const HeroSection = () => {
                     onClick={close}
                     className="mt-5 rounded-full bg-[#FFC45F] px-4 py-3 text-center text-[15px] font-bold text-[#0f172a] shadow-[0_4px_14px_rgba(255,196,95,0.45)] transition-all hover:brightness-105"
                   >
-                    Inscribirme
+                    Pre-inscripción
                   </a>
                 </nav>
               </SheetContent>
@@ -355,7 +355,7 @@ const HeroSection = () => {
                   transition={{ type: "spring", stiffness: 380, damping: 24 }}
                 >
                   <Flame className="h-5 w-5 shrink-0" aria-hidden />
-                  <span className="leading-tight">Desde S/185 (antes S/480)</span>
+                  <span className="leading-tight">Pre-inscripción — Cupos limitados</span>
                   <ChevronRight className="h-5 w-5 shrink-0 opacity-75" aria-hidden />
                 </motion.a>
               </div>
