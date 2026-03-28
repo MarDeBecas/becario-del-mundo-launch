@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, Mail, MessageCircle, ArrowUpRight } from "lucide-react";
+import { Heart, MessageCircle, ArrowUpRight } from "lucide-react";
 
 const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSe8GQSGC9qJ5B5VVV2RzBPm7QiDuKQMb5wKnROtTzc9a0okOA/viewform";
@@ -65,13 +65,6 @@ const socialLinks = [
     href: "https://wa.me/51979719879",
     color: "#25D366",
     icon: <MessageCircle className="h-4 w-4 shrink-0" />,
-  },
-  {
-    label: "Email",
-    handle: "hola@mardebecas.com",
-    href: "mailto:hola@mardebecas.com",
-    color: "#a07de2",
-    icon: <Mail className="h-4 w-4 shrink-0" />,
   },
 ];
 

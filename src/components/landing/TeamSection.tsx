@@ -6,6 +6,7 @@ const speakers = [
   {
     name: "Jackeline Ponce",
     initials: "JP",
+    photo: "/images/expositor/jackeline-ponce.jpg",
     role: "Expositora invitada",
     achievement: "Becaria SABF & Fundación Botín",
     bio: "Abogada especialista en Derechos Humanos por la Corte Interamericana de Derechos Humanos y en Gestión Pública por la Universidad Austral de Argentina. Becaria ganadora y embajadora del SABF (Argentina) y ganadora de la beca Fortalecimiento de políticas públicas de Fundación Botín (España, Colombia y Brasil).",
@@ -15,6 +16,7 @@ const speakers = [
   {
     name: "Katherine Valderrama",
     initials: "KV",
+    photo: "/images/expositor/katherine-valderrama.jpg",
     role: "Expositora invitada",
     achievement: "Chevening Scholar 2025–2026",
     bio: "Ingeniera Industrial con más de ocho años de experiencia en desarrollo sostenible, finanzas verdes y gestión ambiental. Actualmente cursa un MSc en Sostenibilidad y Negocios en la Universidad de Leeds (Reino Unido). Trayectoria probada en liderazgo de proyectos multidisciplinarios en el MINAM y CARE PERÚ.",
@@ -24,6 +26,7 @@ const speakers = [
   {
     name: "Nayvi Pablo",
     initials: "NP",
+    photo: "/images/expositor/nayvi-pablo.jpg",
     role: "Expositora invitada",
     achievement: "Ireland Fellows Programme 2025/2026",
     bio: "Ganadora de la beca Ireland Fellows Programme para la Maestría en Género, Globalización y Derechos en la University of Galway (Irlanda). Formación en marketing y más de seis años liderando proyectos sociales y educativos en zonas rurales de Perú. Cofundadora de Tejidos Femeninos, comunidad que conecta mujeres lideresas de diez países de Latinoamérica.",
@@ -33,6 +36,7 @@ const speakers = [
   {
     name: "Manuel Flores",
     initials: "MF",
+    photo: "",
     role: "Expositor invitado",
     achievement: "Becario GKS & Generación del Bicentenario",
     bio: "Ingeniero mecánico (UNAC), becario Global Korea Scholarship 2022. Cursó la Maestría en Ciencias en Ingeniería Mecánica en la Universidad Nacional de Busan (Corea del Sur). Ganador de la Beca Generación del Bicentenario 2024 en la categoría de doctorado en la Universidad de Edimburgo, Escocia.",
@@ -42,6 +46,7 @@ const speakers = [
   {
     name: "Giovana Roque",
     initials: "GR",
+    photo: "/images/expositor/giovana-roque.jpg",
     role: "Expositora invitada",
     achievement: "Becaria YLAI 2023 (Estados Unidos)",
     bio: "Cofundadora de Warmi Ventures, hub de innovación que impulsa el emprendimiento femenino en Latinoamérica. Becaria Young Leaders for American Initiative – YLAI 2023 (USA). Con más de diez años cerrando brechas tecnológicas mediante la educación e innovación y empoderando a mujeres emprendedoras en toda la región.",
@@ -99,9 +104,23 @@ const TeamSection = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={isInView ? { scale: 1, opacity: 1 } : {}}
               transition={{ delay: 0.15, type: "spring", stiffness: 200 }}
-              className="relative mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-brand-blue via-brand-purple to-brand-blue p-[3px] shadow-xl shadow-brand-blue/30"
+              className="relative mx-auto mb-5 h-28 w-28 rounded-full p-[3px] shadow-xl shadow-brand-blue/30"
+              style={{ background: "linear-gradient(135deg,#2059BA,#A07DE2)" }}
             >
-              <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-brand-blue to-brand-purple">
+              <img
+                src="/images/expositor/marilu-nunez.jpg"
+                alt="Marilú Nuñez"
+                className="h-full w-full rounded-full object-cover"
+                onError={(e) => {
+                  const t = e.currentTarget;
+                  t.style.display = "none";
+                  t.nextElementSibling?.removeAttribute("style");
+                }}
+              />
+              <div
+                className="hidden h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-brand-blue to-brand-purple"
+                style={{ display: "none" }}
+              >
                 <span className="font-display text-3xl font-bold text-white">MN</span>
               </div>
             </motion.div>
@@ -160,8 +179,18 @@ const TeamSection = () => {
               className="group relative flex flex-col rounded-2xl border border-border/90 bg-card p-6 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_16px_36px_-12px_rgba(160,125,226,0.25)]"
             >
               {/* Avatar */}
-              <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${speaker.color} text-lg font-bold text-white shadow-md transition-transform duration-300 group-hover:scale-105`}>
-                {speaker.initials}
+              <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105">
+                {speaker.photo ? (
+                  <img
+                    src={speaker.photo}
+                    alt={speaker.name}
+                    className="h-full w-full object-cover object-top"
+                  />
+                ) : (
+                  <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${speaker.color} text-lg font-bold text-white`}>
+                    {speaker.initials}
+                  </div>
+                )}
               </div>
 
               <h4 className="text-center font-display text-lg font-semibold text-foreground">
