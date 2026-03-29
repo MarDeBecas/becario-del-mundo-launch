@@ -8,6 +8,7 @@ import {
   Presentation,
   Users,
   BadgeCheck,
+  MessagesSquare,
 } from "lucide-react";
 
 const BenefitsSection = () => {
@@ -22,6 +23,7 @@ const BenefitsSection = () => {
     { icon: Presentation, text: "Modelo de pitch y presentación" },
     { icon: Users, text: "Contacto con ex becarios" },
     { icon: BadgeCheck, text: "Certificado de participación" },
+    { icon: MessagesSquare, text: "Comunidad soporte" },
   ];
 
   return (

@@ -6,7 +6,7 @@ import { Check, Clock, Zap, ChevronDown, MessageCircle } from "lucide-react";
 const PRICE_REAL = 300;
 const PRICE_PREVENTA = 250;
 const DISCOUNT_PCT = Math.round((1 - PRICE_PREVENTA / PRICE_REAL) * 100);
-const VIGENCIA = "01 de noviembre, 2025";
+const VIGENCIA = "01 de julio, 2026";
 
 // ✅ Enlaces de WhatsApp diferenciados
 const WS_INSCRIPCION = "https://wa.me/51979719879?text=Hola!%20Deseo%20inscribirme%20en%20el%20programa%20Becario%20del%20Mundo%20%20¿Me%20podrían%20brindar%20los%20pasos%20de%20pago?";

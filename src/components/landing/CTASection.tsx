@@ -92,7 +92,7 @@ const CTASection = () => {
                 className="text-white text-xs mt-4 font-bold uppercase tracking-widest opacity-80"
                 style={{ textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}
               >
-                  Sin compromisos · Cupos limitados
+                  Cupos limitados
               </p>
             </motion.div>
 
