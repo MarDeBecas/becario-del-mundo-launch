@@ -40,7 +40,7 @@ const speakers = [
     role: "Expositor invitado",
     achievement: "Becario GKS & Generación del Bicentenario",
     bio: "Ingeniero mecánico (UNAC), becario Global Korea Scholarship 2022. Cursó la Maestría en Ciencias en Ingeniería Mecánica en la Universidad Nacional de Busan (Corea del Sur). Ganador de la Beca Generación del Bicentenario 2024 en la categoría de doctorado en la Universidad de Edimburgo, Escocia.",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/manuel-fernando-flores-cuenca-8bb505126/",
     color: "from-brand-blue to-teal-500",
   },
   {
@@ -50,7 +50,7 @@ const speakers = [
     role: "Expositora invitada",
     achievement: "Becaria YLAI 2023 (Estados Unidos)",
     bio: "Cofundadora de Warmi Ventures, hub de innovación que impulsa el emprendimiento femenino en Latinoamérica. Becaria Young Leaders for American Initiative – YLAI 2023 (USA). Con más de diez años cerrando brechas tecnológicas mediante la educación e innovación y empoderando a mujeres emprendedoras en toda la región.",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/giovanarv/",
     color: "from-brand-pink to-brand-purple",
   },
 ];

@@ -168,7 +168,7 @@ const HeroSection = () => {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
-              Pre-inscripción
+              Pre-inscríbete ya
             </motion.a>
 
             {/* Hamburguesa — mobile */}
@@ -211,7 +211,7 @@ const HeroSection = () => {
                     onClick={close}
                     className="mt-5 rounded-full bg-[#FFC45F] px-4 py-3 text-center text-[15px] font-bold text-[#0f172a] shadow-[0_4px_14px_rgba(255,196,95,0.45)] transition-all hover:brightness-105"
                   >
-                    Pre-inscripción
+                    Pre-inscríbete ya
                   </a>
                 </nav>
               </SheetContent>
@@ -355,7 +355,7 @@ const HeroSection = () => {
                   transition={{ type: "spring", stiffness: 380, damping: 24 }}
                 >
                   <Flame className="h-5 w-5 shrink-0" aria-hidden />
-                  <span className="leading-tight">Pre-inscripción — Cupos limitados</span>
+                  <span className="leading-tight">Pre-inscríbete ya</span>
                   <ChevronRight className="h-5 w-5 shrink-0 opacity-75" aria-hidden />
                 </motion.a>
               </div>
