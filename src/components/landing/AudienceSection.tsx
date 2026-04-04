@@ -30,17 +30,38 @@ const AudienceSection = () => {
     <section ref={ref} id="audiencia" className="py-28 relative overflow-hidden bg-[#f2f0f5]">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
-        {/* 1. Header (Igual que el original) */}
+        {/* 1. Header con Lechuza Flotante */}
         <div className="flex flex-col lg:flex-row items-center gap-12 mb-10">
           <div className="flex-1 w-full text-left">
             <span className="inline-block bg-white text-[#2059BA] text-sm font-semibold px-5 py-2 rounded-full mb-6 shadow-sm border border-[#A07DE2]/30 uppercase tracking-widest">¿Es para ti?</span>
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-4">¿A quién va dirigido?</h2>
             <p className="text-gray-800 text-lg max-w-lg">Si soñaste con estudiar fuera de tu país y no sabes por dónde empezar, <span className="text-[#A07DE2] font-bold">este programa es para ti.</span></p>
           </div>
-          <img src="/images/lechuza-rompecabezas.png" alt="Mascota" className="hidden lg:block w-48 h-48 object-contain" />
+          
+          {/* Animación de entrada + Flotación infinita */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.8 }}
+            className="hidden lg:block relative"
+          >
+            <motion.img 
+              src="/images/lechuza-rompecabezas.png" 
+              alt="Mascota" 
+              className="w-48 h-48 object-contain"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            />
+            {/* Sombra proyectada que reacciona al movimiento */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-3 bg-black/5 blur-lg rounded-full" />
+          </motion.div>
         </div>
 
-        {/* 2. Cards (Mantenemos las 5 en una fila) */}
+        {/* 2. Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-16">
           {AUDIENCES.map((audience) => (
             <motion.div
@@ -48,7 +69,7 @@ const AudienceSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: audience.delay }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col"
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow"
             >
               <div className={`w-12 h-12 rounded-xl ${audience.bg} flex items-center justify-center mb-4 text-white shadow-sm`}><audience.icon className="w-6 h-6" /></div>
               <h3 className="text-base font-bold text-gray-900 mb-2 leading-tight">{audience.title}</h3>
@@ -57,43 +78,39 @@ const AudienceSection = () => {
           ))}
         </div>
 
-        {/* 3. Banner de Testimonio - ANCHO MEDIO (3 CARDS) Y LETRA FINA */}
+        {/* 3. Banner de Testimonio */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="max-w-4xl mx-auto px-4" // Este ancho alinea el banner con las 3 cards centrales
+          className="max-w-4xl mx-auto px-4"
         >
           <div className="bg-white rounded-2xl px-6 py-5 shadow-lg border-b-4 border-[#A07DE2] relative overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
                 transition={{ duration: 0.3 }}
                 className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6"
               >
-                {/* Texto a la izquierda - Letra más pequeña y fina */}
                 <div className="flex-1">
                   <p className="text-gray-600 text-sm md:text-base italic font-medium leading-snug">
                     "{t.text}"
                   </p>
                 </div>
 
-                {/* Perfil y controles - Muy compactos */}
                 <div className="flex items-center gap-4 border-l border-gray-100 pl-4 shrink-0">
                   <div className="flex items-center gap-3">
                     <div className="text-right">
                       <p className="text-[12px] font-bold text-gray-900 leading-none">{t.name}</p>
                       <p className="text-[#A07DE2] text-[9px] font-bold uppercase mt-1 tracking-tight">{t.label}</p>
-                      {/* ⭐⭐⭐⭐⭐ EMOJIS DE ESTRELLAS AÑADIDOS AQUÍ ⭐⭐⭐⭐⭐ */}
-                      <div className="text-[14px] mb-1.9 leading-none">
+                      <div className="text-[14px] mt-1 leading-none">
                         ⭐⭐⭐⭐⭐
                       </div>
                     </div>
                   </div>
                   
-                  {/* Navegación - Botones minimalistas */}
                   <div className="flex gap-1.5">
                     <button onClick={prev} className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
                       <ChevronLeft size={14} className="text-[#A07DE2]" />
