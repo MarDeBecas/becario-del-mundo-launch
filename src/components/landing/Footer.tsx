@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 import { Heart, MessageCircle, ArrowUpRight } from "lucide-react";
 
-const FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSe8GQSGC9qJ5B5VVV2RzBPm7QiDuKQMb5wKnROtTzc9a0okOA/viewform";
-
 const navLinks = [
   { label: "¿Para quién?", href: "#audiencia" },
   { label: "Objetivos", href: "#objetivos" },
@@ -86,39 +83,6 @@ const Footer = () => {
 
       {/* Top gradient line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent" />
-
-      {/* CTA strip */}
-      <div className="relative border-b border-white/[0.06]">
-        <div className="section-container py-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left"
-          >
-            <div>
-              <p className="font-display text-lg font-bold text-white md:text-xl">
-                ¿Listo para dar el primer paso?
-              </p>
-              <p className="mt-1 text-sm text-white/55">
-                Cupos limitados · Inicio 14 de Junio · 6 semanas
-              </p>
-            </div>
-            <motion.a
-              href={FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-brand-gold to-amber-400 px-6 py-3 text-sm font-bold text-[#0f172a] shadow-[0_6px_24px_rgba(255,196,95,0.35)] transition-shadow hover:shadow-[0_8px_30px_rgba(255,196,95,0.5)]"
-            >
-              Pre-inscripción
-              <ArrowUpRight className="h-4 w-4" />
-            </motion.a>
-          </motion.div>
-        </div>
-      </div>
 
       {/* Main footer body */}
       <div className="section-container relative py-14">

@@ -36,7 +36,7 @@ const speakers = [
   {
     name: "Manuel Flores",
     initials: "MF",
-    photo: "",
+    photo: "/images/expositor/manuel-flores.jpg",
     role: "Expositor invitado",
     achievement: "Becario GKS & Generación del Bicentenario",
     bio: "Ingeniero mecánico (UNAC), becario Global Korea Scholarship 2022. Cursó la Maestría en Ciencias en Ingeniería Mecánica en la Universidad Nacional de Busan (Corea del Sur). Ganador de la Beca Generación del Bicentenario 2024 en la categoría de doctorado en la Universidad de Edimburgo, Escocia.",

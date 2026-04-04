@@ -1,56 +1,16 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const aliados = [
-  {
-    name: "Beca Generación del Bicentenario",
-    country: "🇵🇪 Perú → 🇬🇧 Reino Unido",
-    color: "from-red-500/20 to-blue-600/20",
-    border: "border-red-400/30",
-  },
-  {
-    name: "Chevening Scholarship",
-    country: "🇬🇧 Reino Unido",
-    color: "from-blue-700/20 to-red-600/20",
-    border: "border-blue-500/30",
-  },
-  {
-    name: "Ireland Fellows Programme",
-    country: "🇮🇪 Irlanda",
-    color: "from-green-600/20 to-orange-500/20",
-    border: "border-green-500/30",
-  },
-  {
-    name: "Global Korea Scholarship",
-    country: "🇰🇷 Corea del Sur",
-    color: "from-blue-500/20 to-red-500/20",
-    border: "border-blue-400/30",
-  },
-  {
-    name: "YLAI Fellowship",
-    country: "🇺🇸 Estados Unidos",
-    color: "from-blue-600/20 to-red-400/20",
-    border: "border-indigo-400/30",
-  },
-  {
-    name: "SABF",
-    country: "🇦🇷 Argentina",
-    color: "from-sky-400/20 to-white/10",
-    border: "border-sky-400/30",
-  },
-  {
-    name: "Beca Fundación Botín",
-    country: "🇪🇸 España",
-    color: "from-yellow-500/20 to-red-500/20",
-    border: "border-yellow-400/30",
-  },
-  {
-    name: "Australia Awards",
-    country: "🇦🇺 Australia",
-    color: "from-yellow-400/20 to-red-600/20",
-    border: "border-yellow-400/30",
-  },
+const alianzas = [
+  { name: "AIESEC", src: "/images/alianzas/AIESEC.jpg" },
+  { name: "Aprendly", src: "/images/alianzas/Aprendly.jpg" },
+  { name: "Blue Studies", src: "/images/alianzas/bluestudies.jpeg" },
+  { name: "Create Latam", src: "/images/alianzas/CreateLatam.jpg" },
+  { name: "IISE", src: "/images/alianzas/IISE.png" },
 ];
+
+// Duplicate list so the infinite marquee loops seamlessly
+const doubled = [...alianzas, ...alianzas];
 
 const AliadosSection = () => {
   const ref = useRef(null);
@@ -69,6 +29,7 @@ const AliadosSection = () => {
       />
 
       <div className="section-container relative">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -76,43 +37,55 @@ const AliadosSection = () => {
           className="mb-12 text-center"
         >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">
-            Nuestros ex-becarios
+            Alianzas estratégicas
           </p>
           <h2 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
             Confían en nosotros
           </h2>
           <div className="mx-auto mb-4 h-1.5 w-24 rounded-full bg-gradient-to-r from-brand-gold to-brand-purple" />
           <p className="mx-auto max-w-xl text-muted-foreground">
-            Hemos acompañado a jóvenes peruanos que hoy estudian con becas de los programas más competitivos del mundo.
+            Trabajamos junto a organizaciones comprometidas con el desarrollo de jóvenes líderes latinoamericanos.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-          {aliados.map((aliado, index) => (
+        {/* Marquee track — fade edges */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="relative"
+        >
+          {/* Left fade */}
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent" />
+          {/* Right fade */}
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent" />
+
+          <div className="overflow-hidden">
             <motion.div
-              key={aliado.name}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+              className="flex gap-6"
+              animate={{ x: ["0%", "-50%"] }}
               transition={{
-                duration: 0.4,
-                delay: 0.08 + index * 0.07,
-                type: "spring",
-                stiffness: 110,
+                duration: 18,
+                repeat: Infinity,
+                ease: "linear",
               }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              className={`group relative overflow-hidden rounded-2xl border ${aliado.border} bg-gradient-to-br ${aliado.color} p-5 text-center backdrop-blur-sm transition-all`}
             >
-              <div className="absolute inset-0 bg-card/60 backdrop-blur-sm transition-opacity group-hover:bg-card/40" />
-              <div className="relative">
-                <p className="mb-1 text-lg leading-none">{aliado.country.split(" ")[0]}</p>
-                <p className="font-display text-sm font-semibold leading-snug text-foreground">
-                  {aliado.name}
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">{aliado.country.split(" ").slice(1).join(" ")}</p>
-              </div>
+              {doubled.map((alianza, i) => (
+                <div
+                  key={`${alianza.name}-${i}`}
+                  className="flex shrink-0 items-center justify-center rounded-2xl border border-border/60 bg-white px-8 py-5 shadow-sm"
+                  style={{ minWidth: 170, height: 110 }}
+                >
+                  <img
+                    src={alianza.src}
+                    alt={alianza.name}
+                    className="h-14 w-auto max-w-[130px] object-contain"
+                  />
+                </div>
+              ))}
             </motion.div>
-          ))}
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
