@@ -1,6 +1,6 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Award, Sparkles, ExternalLink } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
+import { Award, Sparkles, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 
 const speakers = [
   {
@@ -55,9 +55,17 @@ const speakers = [
   },
 ];
 
+const VISIBLE = 3;
+
 const TeamSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [current, setCurrent] = useState(0);
+
+  const maxIndex = speakers.length - VISIBLE;
+  const prev = useCallback(() => setCurrent((c) => Math.max(0, c - 1)), []);
+  const next = useCallback(() => setCurrent((c) => Math.min(maxIndex, c + 1)), [maxIndex]);
+  const visible = speakers.slice(current, current + VISIBLE);
 
   return (
     <section
@@ -162,64 +170,110 @@ const TeamSection = () => {
           </p>
         </motion.div>
 
-        {/* Grid de expositores */}
-        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {speakers.map((speaker, index) => (
-            <motion.div
-              key={speaker.name}
-              initial={{ opacity: 0, y: 28 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.45,
-                delay: 0.25 + index * 0.1,
-                type: "spring",
-                stiffness: 100,
-              }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="group relative flex flex-col rounded-2xl border border-border/90 bg-card p-6 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_16px_36px_-12px_rgba(160,125,226,0.25)]"
-            >
-              {/* Avatar */}
-              <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105">
-                {speaker.photo ? (
-                  <img
-                    src={speaker.photo}
-                    alt={speaker.name}
-                    className="h-full w-full object-cover object-top"
-                  />
-                ) : (
-                  <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${speaker.color} text-lg font-bold text-white`}>
-                    {speaker.initials}
+        {/* Carrusel de expositores */}
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="popLayout">
+              {visible.map((speaker, index) => (
+                <motion.div
+                  key={`${current}-${speaker.name}`}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.08,
+                    type: "spring",
+                    stiffness: 110,
+                  }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  className="group relative flex flex-col rounded-2xl border border-border/90 bg-card p-6 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_16px_36px_-12px_rgba(160,125,226,0.25)]"
+                >
+                  {/* Avatar */}
+                  <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105">
+                    {speaker.photo ? (
+                      <img
+                        src={speaker.photo}
+                        alt={speaker.name}
+                        className="h-full w-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${speaker.color} text-lg font-bold text-white`}>
+                        {speaker.initials}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
 
-              <h4 className="text-center font-display text-lg font-semibold text-foreground">
-                {speaker.name}
-              </h4>
-              <p className="mb-1 text-center text-sm text-muted-foreground">{speaker.role}</p>
-              <p className="mb-3 text-center text-sm font-medium leading-snug text-brand-purple">
-                {speaker.achievement}
-              </p>
+                  <h4 className="text-center font-display text-lg font-semibold text-foreground">
+                    {speaker.name}
+                  </h4>
+                  <p className="mb-1 text-center text-sm text-muted-foreground">{speaker.role}</p>
+                  <p className="mb-3 text-center text-sm font-medium leading-snug text-brand-purple">
+                    {speaker.achievement}
+                  </p>
 
-              <p className="flex-1 text-center text-xs leading-relaxed text-muted-foreground">
-                {speaker.bio}
-              </p>
+                  <p className="flex-1 text-center text-xs leading-relaxed text-muted-foreground">
+                    {speaker.bio}
+                  </p>
 
-              {speaker.linkedin && (
-                <div className="mt-4 flex justify-center">
-                  <a
-                    href={speaker.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-brand-blue/25 px-3 py-1.5 text-xs font-medium text-brand-blue transition-colors hover:bg-brand-blue/5"
-                  >
-                    <ExternalLink className="h-3 w-3" />
-                    LinkedIn
-                  </a>
-                </div>
-              )}
-            </motion.div>
-          ))}
+                  {speaker.linkedin && (
+                    <div className="mt-4 flex justify-center">
+                      <a
+                        href={speaker.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-brand-blue/25 px-3 py-1.5 text-xs font-medium text-brand-blue transition-colors hover:bg-brand-blue/5"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        LinkedIn
+                      </a>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Navegación */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-10 flex items-center justify-center gap-4"
+          >
+            <button
+              onClick={prev}
+              disabled={current === 0}
+              aria-label="Anterior"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-all hover:border-brand-purple/50 hover:bg-brand-purple/5 hover:text-brand-purple disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            <div className="flex gap-2">
+              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Ir al grupo ${i + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    i === current
+                      ? "w-8 bg-brand-purple"
+                      : "w-2.5 bg-border hover:bg-brand-purple/40"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              disabled={current === maxIndex}
+              aria-label="Siguiente"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-all hover:border-brand-purple/50 hover:bg-brand-purple/5 hover:text-brand-purple disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>
