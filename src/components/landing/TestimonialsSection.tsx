@@ -5,38 +5,52 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "La ayuda de Marilú en este proceso fue fundamental. Recuerdo que desde la primera asesoría pude hacer mi timeline de los pasos y consideraciones importantes que debía tener. Eso me ayudó mucho a poder organizarme. Además, cada vez que surgían dudas en este proceso siempre recurría a ella para preguntar y ella siempre estaba dispuesta en ayudar. Agradezco mucho su constancia a todos los mensajes que le envié, porque en realidad fueron muchos.",
-    name: "Emmy Taboada",
-    achievement: "Beca Generación del Bicentenario",
-    detail: "University of Edinburgh, Reino Unido",
-    photo: "/images/testimonios/Emmy-Taboada.jpg",
+      "El curso me ayudó a creer más en mí y en mi historia. A través del autoconocimiento entendí mejor quién soy y qué quiero lograr. Aprendí a construir un perfil competitivo sin dejar de ser auténtica, y a expresar mis objetivos con claridad en mi carta de motivación. Hoy me siento más segura y preparada para postular a becas internacionales.",
+    name: "Brenda Rodríguez",
+    achievement: "Alumna del curso",
+    detail: "",
+    initials: "BR",
+    gradient: "from-brand-blue to-brand-purple",
     stars: 5,
   },
   {
     quote:
-      "Gracias a la mentoría de Marilu, fortalecí mis ensayos y me preparé con seguridad para la entrevista con la Embajada de Irlanda. Su guía fue fundamental para lograr una beca de Irish Aid y ser admitida en maestría en Género, Globalización Derechos en la Universidad de Galway. Más allá de lo académico, me ayudó a confiar en mi misma y siempre le estaré agradecida por su generosidad y compromiso.",
-    name: "Nayvi Pablo",
-    achievement: "Ireland Fellowship",
-    detail: "University of Galway, Irlanda",
-    photo: "/images/testimonios/Nayvi-Pablo.jpg",
+      "Este curso me permitió madurar mi idea de obtener una beca y prepararme adecuadamente. Las ponencias de becarios y la revisión de cartas en vivo fueron de gran apoyo. Fue una experiencia muy completa que realmente te orienta en el proceso.",
+    name: "Margarita Junco",
+    achievement: "Alumna del curso",
+    detail: "",
+    initials: "MJ",
+    gradient: "from-brand-purple to-brand-pink",
     stars: 5,
   },
   {
     quote:
-      "Recomiendo al equipo de Mar de Becas, fundado por Marilú, a quienes buscan hacer una maestría en el extranjero. Su asesoría fue clave para entender el proceso, comparar opciones y acceder a financiamiento mediante becas. Gracias a su guía, postulé y gané la Beca Generación del Bicentenario (BGB). Destaco su experiencia, cercanía y disposición en cada etapa del camino.",
-    name: "Roy Chirinos",
-    achievement: "Beca Generación del Bicentenario",
-    detail: "University College London, Reino Unido",
-    photo: "/images/testimonios/Roy-Chirinos.jpg",
+      "El curso me ayudó a tener mayor claridad sobre lo que busco en una beca y el impacto que quiero generar. También reforzó mi autoconocimiento y me permitió entender por qué merezco estas oportunidades. Es una experiencia que definitivamente recomendaría.",
+    name: "Juan Francisco Aguilar",
+    achievement: "Alumno del curso",
+    detail: "",
+    initials: "JA",
+    gradient: "from-brand-gold to-amber-500",
     stars: 5,
   },
   {
     quote:
-      "Marilú, no tengo palabras para agradecer tu apoyo incondicional. Tu orientación experta con los documentos, sumado a tu motivación constante, fue fundamental para que pudiera culminar mi postulación y superar la subsanación. Tus consejos son un tesoro. Realmente espero que muchas más personas descubran el valor de tu experiencia para que puedan alcanzar sus objetivos académicos en el extranjero. Elegir la asesoría correcta, como tú, abre un mundo de posibilidades.",
-    name: "Wendy Dávila",
-    achievement: "Beca Generación del Bicentenario 2025",
-    detail: "University of Southampton, Reino Unido",
-    photo: "/images/testimonios/Wendy-Davila.jpg",
+      "El curso fortaleció mi motivación y confianza para postular al extranjero. Me ayudó a reconocer que mi perfil es competitivo y que mis metas son alcanzables. Es un espacio que realmente te impulsa a creer en ti y a dar el siguiente paso.",
+    name: "Alondra Ríos",
+    achievement: "Alumna del curso",
+    detail: "",
+    initials: "AR",
+    gradient: "from-teal-500 to-brand-blue",
+    stars: 5,
+  },
+  {
+    quote:
+      "Las experiencias de los becarios invitados fueron lo más valioso. Escuchar sus historias y consejos me motivó a no rendirme. El curso cumple con brindar una guía clara para postular a oportunidades académicas y te da herramientas concretas para empezar.",
+    name: "Geraldine Taipe",
+    achievement: "Alumna del curso",
+    detail: "",
+    initials: "GT",
+    gradient: "from-brand-pink to-brand-purple",
     stars: 5,
   },
 ];
@@ -117,23 +131,19 @@ const TestimonialsSection = () => {
 
                 {/* Person header */}
                 <div className="relative mb-5 flex items-center gap-4">
-                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-brand-purple/20 ring-offset-2">
-                    <img
-                      src={t.photo}
-                      alt={t.name}
-                      className="h-full w-full object-cover object-top"
-                    />
+                  <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient} font-display text-base font-bold text-white shadow-md ring-2 ring-white/30 ring-offset-2`}>
+                    {t.initials}
                   </div>
                   <div>
-                    <p className="font-display text-base font-bold text-foreground leading-tight">
+                    <p className="font-display text-base font-bold leading-tight text-foreground">
                       {t.name}
                     </p>
-                    <p className="mt-0.5 text-sm font-semibold text-brand-blue leading-snug">
+                    <p className="mt-0.5 text-sm font-semibold leading-snug text-brand-blue">
                       {t.achievement}
                     </p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">
-                      {t.detail}
-                    </p>
+                    {t.detail && (
+                      <p className="mt-0.5 text-xs text-muted-foreground">{t.detail}</p>
+                    )}
                   </div>
                 </div>
 
