@@ -2,56 +2,106 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
+function TestimonialAvatar({
+  photo,
+  initials,
+  name,
+}: {
+  photo: string;
+  initials: string;
+  name: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <div
+        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-blue to-brand-purple font-display text-base font-bold text-white shadow-md ring-2 ring-white/30 ring-offset-2 ring-offset-card"
+        aria-hidden
+      >
+        {initials}
+      </div>
+    );
+  }
+  return (
+    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-muted shadow-md ring-2 ring-white/30 ring-offset-2 ring-offset-card">
+      <img
+        src={photo}
+        alt={name}
+        className="h-full w-full object-cover"
+        loading="lazy"
+        decoding="async"
+        onError={() => setFailed(true)}
+      />
+    </div>
+  );
+}
+
+function StarRating({ rating }: { rating: number }) {
+  const label =
+    rating % 1 === 0 ? `${rating} de 5 estrellas` : `${rating.toFixed(1)} de 5 estrellas`;
+  return (
+    <div className="flex gap-0.5 text-brand-gold" aria-label={label}>
+      {[0, 1, 2, 3, 4].map((i) => {
+        const fill = Math.min(1, Math.max(0, rating - i));
+        return (
+          <span key={i} className="relative h-4 w-4 shrink-0">
+            <Star className="h-4 w-4 fill-current text-brand-gold/20" strokeWidth={0} />
+            <span
+              className="absolute left-0 top-0 overflow-hidden"
+              style={{ width: `${fill * 100}%` }}
+            >
+              <Star className="h-4 w-4 fill-current text-brand-gold" strokeWidth={0} />
+            </span>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 const testimonials = [
   {
     quote:
-      "El curso me ayudó a creer más en mí y en mi historia. A través del autoconocimiento entendí mejor quién soy y qué quiero lograr. Aprendí a construir un perfil competitivo sin dejar de ser auténtica, y a expresar mis objetivos con claridad en mi carta de motivación. Hoy me siento más segura y preparada para postular a becas internacionales.",
-    name: "Brenda Rodríguez",
-    achievement: "Alumna del curso",
-    detail: "",
-    initials: "BR",
-    gradient: "from-brand-blue to-brand-purple",
-    stars: 5,
-  },
-  {
-    quote:
-      "Este curso me permitió madurar mi idea de obtener una beca y prepararme adecuadamente. Las ponencias de becarios y la revisión de cartas en vivo fueron de gran apoyo. Fue una experiencia muy completa que realmente te orienta en el proceso.",
-    name: "Margarita Junco",
-    achievement: "Alumna del curso",
-    detail: "",
-    initials: "MJ",
-    gradient: "from-brand-purple to-brand-pink",
-    stars: 5,
-  },
-  {
-    quote:
-      "El curso me ayudó a tener mayor claridad sobre lo que busco en una beca y el impacto que quiero generar. También reforzó mi autoconocimiento y me permitió entender por qué merezco estas oportunidades. Es una experiencia que definitivamente recomendaría.",
-    name: "Juan Francisco Aguilar",
-    achievement: "Alumno del curso",
-    detail: "",
+      "Ha sido una experiencia muy gratificante el poder autoconocerme sobre lo que realmente busco conseguir al conseguir una beca u oportunidad dentro o fuera del extranjero, creo que ese es el primer paso y aprenderlo junto con Marilú y su equipo fue clave para poder tener más claro lo que quiero",
+    name: "Juan Francisco Aguilar Bermeo",
+    achievement: "Orientación educativa",
+    detail:
+      "Industrial Engineer | UNMSM | Exchange Student | UCEN | Director of Outgoing Global Volunteer | AIESEC en Perú | Data Analysis | Market Research | Digital Marketing | Power BI | Excel | SQL",
     initials: "JA",
-    gradient: "from-brand-gold to-amber-500",
-    stars: 5,
+    photo: "/images/testimonios/Juan-Francisco-Aguilar-Bermeo.jpg",
+    rating: 5,
   },
   {
     quote:
-      "El curso fortaleció mi motivación y confianza para postular al extranjero. Me ayudó a reconocer que mi perfil es competitivo y que mis metas son alcanzables. Es un espacio que realmente te impulsa a creer en ti y a dar el siguiente paso.",
-    name: "Alondra Ríos",
-    achievement: "Alumna del curso",
-    detail: "",
-    initials: "AR",
-    gradient: "from-teal-500 to-brand-blue",
-    stars: 5,
+      "El curso de Becario del Mundo me ha dado nuevas perspectivas para fortalecer mi perfil. A lo largo de las sesiones, Mari ha demostrado conocimiento del tema, con apertura a responder consultas, incluso después de clases. Algo que me pareció valioso fue la gran cantidad de invitados que tuvo el curso, donde pude conocer a ex becarios de diferentes programas. Las tareas asignadas en el curso me ayudaron a interiorizar lo aprendido y tener en claro que la estrategia hace la diferencia.",
+    name: "Danna Canales Jara",
+    achievement: "Orientación educativa",
+    detail:
+      "Analista de Talento y Cultura | Desarrollo de Carrera | Sostenibilidad",
+    initials: "DC",
+    photo: "/images/testimonios/Danna-Canales-Jara.jpg",
+    rating: 4.8,
   },
   {
     quote:
-      "Las experiencias de los becarios invitados fueron lo más valioso. Escuchar sus historias y consejos me motivó a no rendirme. El curso cumple con brindar una guía clara para postular a oportunidades académicas y te da herramientas concretas para empezar.",
-    name: "Geraldine Taipe",
-    achievement: "Alumna del curso",
-    detail: "",
-    initials: "GT",
-    gradient: "from-brand-pink to-brand-purple",
-    stars: 5,
+      "Llevé el curso Becario del Mundo con Mar de Becas, liderado por Marilu, y me llevo muchos aprendizajes y recomendaciones que aplicaré para seguir potenciando mi perfil :) Recomiendo los servicios de Mari, se nota el empeño y la dedicación que le pone para que todo quede claro y te da la confianza para que puedas absolver tus dudas.",
+    name: "Jashira Meza Peña",
+    achievement: "Orientación educativa",
+    detail: "Marketing Digital | Innovación | Impacto Social | Creadora de Contenido",
+    initials: "JM",
+    photo: "/images/testimonios/Jashira-Meza-Pena.jpg",
+    rating: 5,
+  },
+  {
+    quote:
+      "Marilu is very professional and prepares everything before the meeting. she has a lot of information and she is very generous on what she shares!",
+    name: "Carla Salas Diaz",
+    achievement: "Orientación educativa",
+    detail:
+      "Environmental Compliance & Regulatory Specialist | MSC Lead Auditor & BAP Certification Reviewer | Cross-Border Regulatory Audits (Canada, USA & LATAM)",
+    initials: "CS",
+    photo: "/images/testimonios/Carla-Salas-Diaz.jpg",
+    rating: 5,
   },
 ];
 
@@ -83,7 +133,6 @@ const TestimonialsSection = () => {
       />
 
       <div className="section-container relative">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -102,7 +151,6 @@ const TestimonialsSection = () => {
           </p>
         </motion.div>
 
-        {/* Cards */}
         <div className="grid gap-6 md:grid-cols-2">
           <AnimatePresence mode="popLayout">
             {visible.map((t, index) => (
@@ -115,7 +163,6 @@ const TestimonialsSection = () => {
                 whileHover={{ y: -5 }}
                 className="group relative flex flex-col rounded-2xl border border-border/70 bg-card/90 p-7 shadow-[0_8px_32px_-12px_rgba(32,89,186,0.12)] backdrop-blur-sm transition-shadow hover:border-brand-purple/30 hover:shadow-[0_20px_48px_-16px_rgba(160,125,226,0.22)]"
               >
-                {/* Big decorative quotes */}
                 <span
                   className="pointer-events-none absolute left-5 top-4 font-serif text-7xl font-black leading-none text-brand-purple/10 select-none"
                   aria-hidden
@@ -129,11 +176,8 @@ const TestimonialsSection = () => {
                   "
                 </span>
 
-                {/* Person header */}
                 <div className="relative mb-5 flex items-center gap-4">
-                  <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient} font-display text-base font-bold text-white shadow-md ring-2 ring-white/30 ring-offset-2`}>
-                    {t.initials}
-                  </div>
+                  <TestimonialAvatar photo={t.photo} initials={t.initials} name={t.name} />
                   <div>
                     <p className="font-display text-base font-bold leading-tight text-foreground">
                       {t.name}
@@ -141,25 +185,18 @@ const TestimonialsSection = () => {
                     <p className="mt-0.5 text-sm font-semibold leading-snug text-brand-blue">
                       {t.achievement}
                     </p>
-                    {t.detail && (
-                      <p className="mt-0.5 text-xs text-muted-foreground">{t.detail}</p>
-                    )}
+                    {t.detail ? (
+                      <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">{t.detail}</p>
+                    ) : null}
                   </div>
                 </div>
 
-                {/* Quote */}
                 <blockquote className="relative flex-1 text-sm italic leading-relaxed text-foreground/80 md:text-[0.95rem]">
                   "{t.quote}"
                 </blockquote>
 
-                {/* Stars */}
-                <div className="mt-5 flex gap-1 text-brand-gold" aria-label={`${t.stars} estrellas`}>
-                  {Array.from({ length: t.stars }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
+                <StarRating rating={t.rating} />
 
-                {/* Bottom accent bar on hover */}
                 <motion.div
                   className="pointer-events-none absolute inset-x-0 bottom-0 h-1 rounded-b-2xl bg-gradient-to-r from-brand-blue via-brand-purple to-brand-gold opacity-0 transition-opacity group-hover:opacity-100"
                   layout
@@ -169,7 +206,6 @@ const TestimonialsSection = () => {
           </AnimatePresence>
         </div>
 
-        {/* Navigation */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

@@ -40,7 +40,7 @@ const pills = [
   { icon: Calendar,     text: "6 semanas"                      },
   { icon: Monitor,      text: "Virtual en vivo"                 },
   { icon: Clock,        text: "Sábados 9:00 – 10:30 AM (Perú)" },
-  { icon: CalendarDays, text: "Inicio: 14 de Junio"             },
+  { icon: CalendarDays, text: "Inicio: 4 de Julio"             },
 ];
 
 const fadeUp = {

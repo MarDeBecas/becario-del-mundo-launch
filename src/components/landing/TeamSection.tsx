@@ -53,6 +53,27 @@ const speakers = [
     linkedin: "https://www.linkedin.com/in/giovanarv/",
     color: "from-brand-pink to-brand-purple",
   },
+  {
+    name: "Nayeli Huamani Perez",
+    initials: "NP",
+    photo: "/images/expositor/nayeli-huamani.jpg",
+    role: "Expositora invitada",
+    achievement: "Becaria PRONABEC & Programas Internacionales",
+    bio: "Bachiller de Ingeniería Civil por la Universidad Tecnológica del Perú. Beneficiaria de la Beca Continuidad 2020 de PRONABEC. Ha desarrollado experiencias internacionales como un intercambio virtual con el Tecnológico de Monterrey (México, 2022), un programa académico en ESPOL (Ecuador, 2025) y la Beca CEU Ositrán 2026. Participante en iniciativas como Alianza del Pacífico, con un fuerte compromiso con la educación y la proyección internacional del talento peruano.",
+    linkedin: "https://pe.linkedin.com/in/nayelihp",
+    color: "from-brand-blue to-brand-purple",
+  },
+  {
+    name: "Robert Alexander Castro Carlos",
+    initials: "RC",
+    photo: "/images/expositor/robert-castro.jpg",
+    role: "Expositor invitado",
+    achievement: "Becario Alianza del Pacífico 2023-II",
+    bio: "Bachiller en Administración por la Universidad Nacional Mayor de San Marcos (UNMSM). Becario de la Alianza del Pacífico 2023-II, realizando un intercambio académico en la Universidad Nacional Autónoma de México (UNAM). Cuenta con más de dos años de experiencia en Recursos Humanos y actualmente se desempeña en el BCP, enfocado en la aplicación de datos y tecnología para la gestión del talento.",
+    linkedin: "https://www.linkedin.com/in/robertcastrocarlos",
+    color: "from-brand-purple to-brand-pink",
+  },
+
 ];
 
 const VISIBLE = 3;
