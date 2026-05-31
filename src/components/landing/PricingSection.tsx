@@ -6,7 +6,7 @@ import { Check, Clock, Zap, ChevronDown, MessageCircle } from "lucide-react";
 const PRICE_REAL = 300;
 const PRICE_PREVENTA = 250;
 const DISCOUNT_PCT = Math.round((1 - PRICE_PREVENTA / PRICE_REAL) * 100);
-const VIGENCIA = "31 de mayo, 2026";
+const VIGENCIA = "30 de junio, 2026";
 
 // ✅ Enlaces de WhatsApp diferenciados
 const WS_INSCRIPCION = "https://wa.me/51979719879?text=Hola!%20Deseo%20inscribirme%20en%20el%20programa%20Becario%20del%20Mundo%20%20¿Me%20podrían%20brindar%20los%20pasos%20de%20pago?";
@@ -139,7 +139,8 @@ const PricingSection = () => {
                   <div className="flex items-center justify-center gap-1">
                     <span className="text-brand-blue font-black text-6xl font-display">S/ {PRICE_PREVENTA}</span>
                   </div>
-                  <p className="text-gray-400 text-[10px] mt-2 uppercase tracking-widest font-black">Pago único · Acceso total</p>
+                  <p className="text-gray-500 text-sm mt-1 font-semibold font-sans">≈ USD 79</p>
+                  <p className="text-gray-400 text-[10px] mt-1 uppercase tracking-widest font-black">Pago único · Acceso total</p>
                 </div>
 
                 {/* Fecha Límite */}

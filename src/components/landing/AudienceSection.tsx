@@ -46,7 +46,7 @@ const AudienceSection = () => {
             className="hidden lg:block relative"
           >
             <motion.img 
-              src="/images/lechuza-rompecabezas.png" 
+              src="/images/5.png"
               alt="Mascota" 
               className="w-48 h-48 object-contain"
               animate={{ y: [0, -15, 0] }}
