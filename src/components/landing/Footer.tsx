@@ -58,7 +58,7 @@ const socialLinks = [
   },
   {
     label: "WhatsApp",
-    handle: "+51 979 719 879",
+    handle: "Mar de Becas",
     href: "https://wa.link/dh1dee",
     color: "#25D366",
     icon: <MessageCircle className="h-4 w-4 shrink-0" />,
