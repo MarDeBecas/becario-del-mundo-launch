@@ -18,7 +18,6 @@ const SorteoPopup = () => {
     sessionStorage.setItem("sorteo_closed", "true");
   };
 
-  const SORTEO_URL = "https://wa.me/51979719879?text=Hola!%20Vengo%20de%20la%20web%20y%20quiero%20participar%20en%20el%20sorteo%20de%20becas%20🎁";
 
   return (
     <AnimatePresence>
@@ -38,9 +37,9 @@ const SorteoPopup = () => {
             {/* Botón Cerrar Minimalista */}
             <button
               onClick={handleClose}
-              className="absolute right-4 top-4 rounded-full p-1 text-gray-400 transition-all hover:bg-gray-100 hover:text-gray-600"
+              className="absolute right-2 top-2 flex h-10 w-10 items-center justify-center rounded-full text-gray-400 transition-all hover:bg-gray-100 hover:text-gray-700 active:scale-95"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" strokeWidth={2.5} />
             </button>
 
             <div className="relative z-10 flex flex-col gap-3">
@@ -63,17 +62,13 @@ const SorteoPopup = () => {
               </div>
 
               {/* Botón CTA - Azul con sombra suave */}
-              <motion.a
-                href={SORTEO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-3.5 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-brand-blue/20 transition-all"
+              <motion.button
+                disabled
+                className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue/40 py-3.5 text-[11px] font-black uppercase tracking-widest text-white cursor-not-allowed"
               >
                 <Gift className="h-4 w-4" />
-                Participar ahora
-              </motion.a>
+                Próximamente
+              </motion.button>
             </div>
           </div>
         </motion.div>

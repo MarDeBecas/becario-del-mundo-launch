@@ -9,8 +9,8 @@ const DISCOUNT_PCT = Math.round((1 - PRICE_PREVENTA / PRICE_REAL) * 100);
 const VIGENCIA = "30 de junio, 2026";
 
 // ✅ Enlaces de WhatsApp diferenciados
-const WS_INSCRIPCION = "https://wa.me/51979719879?text=Hola!%20Deseo%20inscribirme%20en%20el%20programa%20Becario%20del%20Mundo%20%20¿Me%20podrían%20brindar%20los%20pasos%20de%20pago?";
-const WS_DUDAS = "https://wa.me/51979719879?text=Hola!%20Tengo%20algunas%20dudas%20sobre%20Becario%20del%20Mundo%20%20¿Podrían%20ayudarme?";
+const WS_INSCRIPCION = "https://wa.link/xxwhyw";
+const WS_DUDAS = "https://wa.link/pcwo01";
 
 const INCLUDES = [
   "6 sesiones en vivo con expertos",

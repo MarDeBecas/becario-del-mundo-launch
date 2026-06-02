@@ -13,7 +13,7 @@ import Footer from "@/components/landing/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const WA_LINK = "https://wa.link/azl53k";
+const WA_LINK = "https://wa.link/dh1dee";
 
 const WhatsAppButton = () => {
   const [visible, setVisible] = useState(false);

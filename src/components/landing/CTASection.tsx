@@ -5,7 +5,7 @@ const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const WS_INSCRIPCION = "https://wa.me/51979719879?text=Hola!%20Deseo%20inscribirme%20en%20el%20programa%20Becario%20del%20Mundo%20🌍";
+  const WS_INSCRIPCION = "https://wa.link/cna328";
 
   return (
     <section

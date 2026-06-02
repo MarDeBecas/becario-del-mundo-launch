@@ -59,7 +59,7 @@ const socialLinks = [
   {
     label: "WhatsApp",
     handle: "+51 979 719 879",
-    href: "https://wa.me/51979719879",
+    href: "https://wa.link/dh1dee",
     color: "#25D366",
     icon: <MessageCircle className="h-4 w-4 shrink-0" />,
   },
@@ -104,9 +104,6 @@ const Footer = () => {
             <p className="mt-4 text-sm leading-relaxed text-white/55">
               Formamos becarios del mundo con metodología práctica, acompañamiento cercano y una comunidad de ex-becarios que ya lo lograron.
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-gold/25 bg-brand-gold/10 px-3.5 py-1.5 text-xs font-semibold text-brand-gold">
-              +70 jóvenes becados acompañados
-            </div>
           </motion.div>
 
           {/* Col 2 — Nav */}

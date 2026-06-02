@@ -39,8 +39,8 @@ const tabletNav = navItems.filter(({ href }) =>
 const pills = [
   { icon: Calendar,     text: "6 semanas"                      },
   { icon: Monitor,      text: "Virtual en vivo"                 },
-  { icon: Clock,        text: "Sábados 9:00 – 10:30 AM (Perú)" },
-  { icon: CalendarDays, text: "Inicio: 4 de Julio"             },
+  /**{ icon: Clock,        text: "Sábados 9:00 – 10:30 AM (Perú)" },*/
+  { icon: CalendarDays, text: "Inicio: 26 de Julio"             },
 ];
 
 const fadeUp = {
@@ -66,7 +66,7 @@ const smoothScrollTo = (href: string, closeMenu?: () => void) => {
   }, delay);
 };
 
-// ─────────────────────────────────────────────────────────────
+// ──────────────────────────────────────F───────────────────────
 const HeroSection = () => {
   const [menuOpen, setMenuOpen]   = useState(false);
   const [scrolled, setScrolled]   = useState(false);
