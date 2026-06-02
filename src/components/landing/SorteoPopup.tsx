@@ -22,6 +22,16 @@ const SorteoPopup = () => {
   return (
     <AnimatePresence>
       {isVisible && (
+        <>
+          {/* Fondo oscuro — clic fuera cierra */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleClose}
+            className="fixed inset-0 z-[99] bg-black/40"
+          />
+
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -72,6 +82,7 @@ const SorteoPopup = () => {
             </div>
           </div>
         </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
