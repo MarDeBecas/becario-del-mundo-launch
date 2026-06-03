@@ -72,13 +72,17 @@ const SorteoPopup = () => {
               </div>
 
               {/* Botón CTA - Azul con sombra suave */}
-              <motion.button
-                disabled
-                className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue/40 py-3.5 text-[11px] font-black uppercase tracking-widest text-white cursor-not-allowed"
+              <motion.a
+                href="https://www.instagram.com/p/DZGgc2jFloJ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue py-3.5 text-[11px] font-black uppercase tracking-widest text-white"
               >
                 <Gift className="h-4 w-4" />
-                Próximamente
-              </motion.button>
+                ¡Participar ahora!
+              </motion.a>
             </div>
           </div>
         </motion.div>
