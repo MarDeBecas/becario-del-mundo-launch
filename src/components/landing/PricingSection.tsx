@@ -139,7 +139,7 @@ const PricingSection = () => {
                   <div className="flex items-center justify-center gap-1">
                     <span className="text-brand-blue font-black text-6xl font-display">S/ {PRICE_PREVENTA}</span>
                   </div>
-                  <p className="text-gray-500 text-sm mt-1 font-semibold font-sans">≈ USD 79</p>
+                  <p className="text-gray-500 text-sm mt-1 font-semibold font-sans">≈ USD 94</p>
                   <p className="text-gray-400 text-[10px] mt-1 uppercase tracking-widest font-black">Pago único · Acceso total</p>
                 </div>
 
