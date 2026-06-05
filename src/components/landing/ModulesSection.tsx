@@ -130,7 +130,7 @@ const ModulesSection = () => {
             6 Sesiones para tu Éxito
           </h2>
           <p className="text-brand-pink/80 text-lg max-w-2xl mx-auto leading-relaxed font-sans">
-            Metodología 100% práctica <span className="text-brand-gold mx-1">•</span> 1 sesión/semana <span className="text-brand-gold mx-1">•</span> Sábados 9:00 AM (hora Perú)
+            Metodología 100% práctica <span className="text-brand-gold mx-1">•</span> 1 sesión/semana <span className="text-brand-gold mx-1">•</span> Domingos 3:00 PM (hora Perú/Colombia)
           </p>
 
           <motion.div
