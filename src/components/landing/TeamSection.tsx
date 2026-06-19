@@ -1,105 +1,300 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Linkedin, Award } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
+import { Award, Sparkles, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+
+const speakers = [
+  {
+    name: "Jackeline Ponce",
+    initials: "JP",
+    photo: "/images/expositor/jackeline-ponce.jpg",
+    role: "Expositora invitada",
+    achievement: "Becaria SABF & Fundación Botín",
+    bio: "Abogada especialista en Derechos Humanos por la Corte Interamericana de Derechos Humanos y en Gestión Pública por la Universidad Austral de Argentina. Becaria ganadora y embajadora del SABF (Argentina) y ganadora de la beca Fortalecimiento de políticas públicas de Fundación Botín (España, Colombia y Brasil).",
+    linkedin: "https://www.linkedin.com/in/jackelinne-susanne-ponce-paredes/",
+    color: "from-brand-blue to-brand-purple",
+  },
+  {
+    name: "Katherine Valderrama",
+    initials: "KV",
+    photo: "/images/expositor/katherine-valderrama.jpg",
+    role: "Expositora invitada",
+    achievement: "Chevening Scholar 2025–2026",
+    bio: "Ingeniera Industrial con más de ocho años de experiencia en desarrollo sostenible, finanzas verdes y gestión ambiental. Actualmente cursa un MSc en Sostenibilidad y Negocios en la Universidad de Leeds (Reino Unido). Trayectoria probada en liderazgo de proyectos multidisciplinarios en el MINAM y CARE PERÚ.",
+    linkedin: "https://www.linkedin.com/in/ACoAABAXPPMB2jtyk-svYU0-gYydgs3hqkbqfvM",
+    color: "from-brand-purple to-brand-pink",
+  },
+  {
+    name: "Manuel Flores",
+    initials: "MF",
+    photo: "/images/expositor/manuel-flores.jpg",
+    role: "Expositor invitado",
+    achievement: "Becario GKS & Generación del Bicentenario",
+    bio: "Ingeniero mecánico (UNAC), becario Global Korea Scholarship 2022. Cursó la Maestría en Ciencias en Ingeniería Mecánica en la Universidad Nacional de Busan (Corea del Sur). Ganador de la Beca Generación del Bicentenario 2024 en la categoría de doctorado en la Universidad de Edimburgo, Escocia.",
+    linkedin: "https://www.linkedin.com/in/manuel-fernando-flores-cuenca-8bb505126/",
+    color: "from-brand-blue to-teal-500",
+  },
+  {
+    name: "Briguit Reinaldo",
+    initials: "BR",
+    photo: "/images/expositor/briguit.jpg",
+    role: "Expositora invitada",
+    achievement: "YLAI Fellow 2025 (Estados Unidos)",
+    bio: "Emprendedora, educadora financiera y fundadora de múltiples iniciativas enfocadas en el empoderamiento de mujeres en Latinoamérica. Con experiencia en fintech, educación y desarrollo de negocios, fue seleccionada como YLAI Fellow 2025 (Young Leaders of the Americas Initiative), reconocimiento del gobierno de EE.UU. para emprendedores de alto impacto en la región.",
+    linkedin: "https://www.linkedin.com/in/briguitreinaldo/",
+    color: "from-brand-pink to-brand-purple",
+  },
+  {
+    name: "Paola Huaman",
+    initials: "PH",
+    photo: "/images/expositor/paola.jpg",
+    role: "Expositora invitada",
+    achievement: "Becaria Fundación Carolina (España)",
+    bio: "Abogada por la Universidad Católica de Santa María (Arequipa, Perú), reconocida con el Premio Anual de Excelencia Académica en Derecho (2016–2021). Conciliadora Extrajudicial en materia de Familia acreditada por el MINJUSDH y Becaria de la Fundación Carolina, cursando el Máster en Protección Internacional de los Derechos Humanos en la Universidad de Alcalá (España).",
+    linkedin: "https://www.linkedin.com/in/paola-encarnaci%C3%B3n-huaman-salcedo-5243a51b5/",
+    color: "from-brand-blue to-teal-500",
+  },
+  {
+    name: "Nayeli Huamani Perez",
+    initials: "NP",
+    photo: "/images/expositor/nayeli-huamani.jpg",
+    role: "Expositora invitada",
+    achievement: "Becaria PRONABEC & Programas Internacionales",
+    bio: "Bachiller de Ingeniería Civil por la Universidad Tecnológica del Perú. Beneficiaria de la Beca Continuidad 2020 de PRONABEC. Ha desarrollado experiencias internacionales como un intercambio virtual con el Tecnológico de Monterrey (México, 2022), un programa académico en ESPOL (Ecuador, 2025) y la Beca CEU Ositrán 2026. Participante en iniciativas como Alianza del Pacífico, con un fuerte compromiso con la educación y la proyección internacional del talento peruano.",
+    linkedin: "https://pe.linkedin.com/in/nayelihp",
+    color: "from-brand-blue to-brand-purple",
+  },
+  {
+    name: "Robert Alexander Castro Carlos",
+    initials: "RC",
+    photo: "/images/expositor/robert-castro.jpg",
+    role: "Expositor invitado",
+    achievement: "Becario Alianza del Pacífico 2023-II",
+    bio: "Bachiller en Administración por la Universidad Nacional Mayor de San Marcos (UNMSM). Becario de la Alianza del Pacífico 2023-II, realizando un intercambio académico en la Universidad Nacional Autónoma de México (UNAM). Cuenta con más de dos años de experiencia en Recursos Humanos y actualmente se desempeña en el BCP, enfocado en la aplicación de datos y tecnología para la gestión del talento.",
+    linkedin: "https://www.linkedin.com/in/robertcastrocarlos",
+    color: "from-brand-purple to-brand-pink",
+  },
+
+];
+
+const VISIBLE = 3;
 
 const TeamSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [current, setCurrent] = useState(0);
 
-  const speakers = [
-    {
-      name: "Nayvi Pablo",
-      role: "Expositora invitada",
-      achievement: "Becaria Ireland Fellows Programme Latin America",
-    },
-    {
-      name: "Giovanna Roque",
-      role: "Expositora invitada",
-      achievement: "Becaria YLAI (Estados Unidos)",
-    },
-    {
-      name: "Manuel Flores",
-      role: "Expositor invitado",
-      achievement: "Becario GKS (Corea) y Bicentenario (Reino Unido)",
-    },
-  ];
+  const maxIndex = speakers.length - VISIBLE;
+  const prev = useCallback(() => setCurrent((c) => Math.max(0, c - 1)), []);
+  const next = useCallback(() => setCurrent((c) => Math.min(maxIndex, c + 1)), [maxIndex]);
+  const visible = speakers.slice(current, current + VISIBLE);
 
   return (
-    <section ref={ref} className="section-padding bg-secondary">
-      <div className="section-container">
+    <section
+      id="equipo"
+      ref={ref}
+      className="relative overflow-hidden section-padding"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-purple/[0.07] via-secondary/80 to-brand-blue/[0.06]" />
+      <motion.div
+        className="pointer-events-none absolute bottom-0 left-1/4 h-64 w-64 rounded-full bg-brand-gold/10 blur-3xl"
+        animate={isInView ? { y: [0, -12, 0] } : {}}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="section-container relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.55, type: "spring", stiffness: 100 }}
+          className="mb-12 text-center"
         >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-brand-purple">
+            Quién te acompaña
+          </p>
+          <h2 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
             Equipo y expositores
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="mx-auto h-1.5 w-24 rounded-full bg-gradient-to-r from-brand-purple to-brand-blue" />
         </motion.div>
 
-        {/* Main Mentor */}
+        {/* Mentora principal */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="max-w-3xl mx-auto mb-12"
+          transition={{ duration: 0.55, delay: 0.08, type: "spring", stiffness: 90 }}
+          className="relative mx-auto mb-14 max-w-3xl"
         >
-          <div className="card-elevated p-8 text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary to-blue-accent" />
-            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-blue-accent flex items-center justify-center">
-              <span className="text-3xl font-bold text-primary-foreground">MN</span>
+          <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-r from-brand-gold via-brand-purple to-brand-blue opacity-80 blur-sm" />
+          <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-card p-8 text-center shadow-2xl md:p-10">
+            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand-gold/15 blur-2xl" />
+            <div className="absolute -bottom-6 left-8 h-24 w-24 rounded-full bg-brand-purple/20 blur-2xl" />
+
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : {}}
+              transition={{ delay: 0.15, type: "spring", stiffness: 200 }}
+              className="relative mx-auto mb-5 h-28 w-28 rounded-full p-[3px] shadow-xl shadow-brand-blue/30"
+              style={{ background: "linear-gradient(135deg,#2059BA,#A07DE2)" }}
+            >
+              <img
+                src="/images/expositor/marilu-nunez.jpg"
+                alt="Marilú Nuñez"
+                className="h-full w-full rounded-full object-cover"
+                onError={(e) => {
+                  const t = e.currentTarget;
+                  t.style.display = "none";
+                  t.nextElementSibling?.removeAttribute("style");
+                }}
+              />
+              <div
+                className="hidden h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-brand-blue to-brand-purple"
+                style={{ display: "none" }}
+              >
+                <span className="font-display text-3xl font-bold text-white">MN</span>
+              </div>
+            </motion.div>
+
+            <div className="mb-1 inline-flex items-center gap-1.5 rounded-full bg-brand-gold/15 px-3 py-1 text-xs font-semibold text-amber-900/90">
+              <Sparkles className="h-3.5 w-3.5" aria-hidden />
+              Mentora principal
             </div>
-            <h3 className="font-display text-2xl font-bold text-foreground mb-1">
+            <h3 className="font-display text-2xl font-bold text-foreground md:text-3xl">
               Marilú Nuñez
             </h3>
-            <p className="text-primary font-medium mb-4">Mentora de Becas • Fundadora de Mar de Becas</p>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Ingeniera industrial con MSc en Emprendimiento e Innovación (Escocia, Reino Unido). 
-              Ganadora de la Beca Generación del Bicentenario. Mentora de más de 70 jóvenes becados 
+            <p className="mb-4 font-medium text-brand-blue">
+              Mentora de Becas · Fundadora de Mar de Becas
+            </p>
+            <p className="mx-auto max-w-2xl leading-relaxed text-muted-foreground">
+              Ingeniera industrial con MSc en Emprendimiento e Innovación (Escocia, Reino Unido).
+              Ganadora de la Beca Generación del Bicentenario. Mentora de más de 70 jóvenes becados
               en países como Reino Unido, Australia e Irlanda.
             </p>
-            <div className="flex items-center justify-center gap-2 mt-4 text-sm text-primary">
-              <Award className="w-4 h-4" />
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 px-4 py-2 text-sm font-medium text-brand-blue">
+              <Award className="h-4 w-4 shrink-0" aria-hidden />
               <span>+70 jóvenes becados acompañados</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Guest Speakers */}
+        {/* Expositores invitados header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center mb-8"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.2 }}
+          className="mb-8 text-center"
         >
-          <h3 className="font-display text-xl font-semibold text-foreground">
-            Expositores invitados
+          <h3 className="font-display text-xl font-semibold text-foreground md:text-2xl">
+            Becarios invitados
           </h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Historias reales de quienes ya vivieron el proceso
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {speakers.map((speaker, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              className="card-elevated p-6 text-center"
+        {/* Carrusel de expositores */}
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="popLayout">
+              {visible.map((speaker, index) => (
+                <motion.div
+                  key={`${current}-${speaker.name}`}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.08,
+                    type: "spring",
+                    stiffness: 110,
+                  }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  className="group relative flex flex-col rounded-2xl border border-border/90 bg-card p-6 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_16px_36px_-12px_rgba(160,125,226,0.25)]"
+                >
+                  {/* Avatar */}
+                  <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-105">
+                    {speaker.photo ? (
+                      <img
+                        src={speaker.photo}
+                        alt={speaker.name}
+                        className="h-full w-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${speaker.color} text-lg font-bold text-white`}>
+                        {speaker.initials}
+                      </div>
+                    )}
+                  </div>
+
+                  <h4 className="text-center font-display text-lg font-semibold text-foreground">
+                    {speaker.name}
+                  </h4>
+                  <p className="mb-1 text-center text-sm text-muted-foreground">{speaker.role}</p>
+                  <p className="mb-3 text-center text-sm font-medium leading-snug text-brand-purple">
+                    {speaker.achievement}
+                  </p>
+
+                  <p className="flex-1 text-center text-xs leading-relaxed text-muted-foreground">
+                    {speaker.bio}
+                  </p>
+
+                  {speaker.linkedin && (
+                    <div className="mt-4 flex justify-center">
+                      <a
+                        href={speaker.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-brand-blue/25 px-3 py-1.5 text-xs font-medium text-brand-blue transition-colors hover:bg-brand-blue/5"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        LinkedIn
+                      </a>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Navegación */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-10 flex items-center justify-center gap-4"
+          >
+            <button
+              onClick={prev}
+              disabled={current === 0}
+              aria-label="Anterior"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-all hover:border-brand-purple/50 hover:bg-brand-purple/5 hover:text-brand-purple disabled:cursor-not-allowed disabled:opacity-30"
             >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-light flex items-center justify-center">
-                <span className="text-lg font-bold text-primary">
-                  {speaker.name.split(" ").map(n => n[0]).join("")}
-                </span>
-              </div>
-              <h4 className="font-display text-lg font-semibold text-foreground mb-1">
-                {speaker.name}
-              </h4>
-              <p className="text-sm text-muted-foreground mb-2">{speaker.role}</p>
-              <p className="text-sm text-primary font-medium">{speaker.achievement}</p>
-            </motion.div>
-          ))}
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            <div className="flex gap-2">
+              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Ir al grupo ${i + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    i === current
+                      ? "w-8 bg-brand-purple"
+                      : "w-2.5 bg-border hover:bg-brand-purple/40"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              disabled={current === maxIndex}
+              aria-label="Siguiente"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-all hover:border-brand-purple/50 hover:bg-brand-purple/5 hover:text-brand-purple disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>

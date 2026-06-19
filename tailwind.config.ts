@@ -14,10 +14,19 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        display: ["Plus Jakarta Sans", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],      // ← cambiado de Inter
+        display: ["Poppins", "sans-serif"],   // ← cambiado de Plus Jakarta
+        seasons: ["The Seasons", "serif"],    // ← nuevo para citas/detalles
       },
       colors: {
+        // ✅ Colores Mar de Becas
+        brand: {
+          blue:  "#2059BA",    // primary
+          purple: "#A07DE2",   // secondary
+          pink:  "#F9E1DE",    // accent
+          gold:  "#FFC45F",    // gold
+        },
+        // ✅ Base
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -50,15 +59,6 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        purple: {
-          light: "hsl(var(--purple-light))",
-          medium: "hsl(var(--purple-medium))",
-          dark: "hsl(var(--purple-dark))",
-        },
-        blue: {
-          accent: "hsl(var(--blue-accent))",
-          light: "hsl(var(--blue-light))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
